@@ -65,8 +65,7 @@ Refer to the [Installation Section](#installation) for detailed steps.
 #### **Backend (Node.js)**
 
 ```bash
-cd backend
-npm install express sequelize pg pg-hstore dotenv body-parser twilio aws-sdk bcryptjs jsonwebtoken cors
+npm install express sequelize pg pg-hstore dotenv body-parser twilio aws-sdk bcryptjs jsonwebtoken cors helmet
 npm install --save-dev sequelize-cli
 npx sequelize-cli init
 ```
@@ -103,7 +102,6 @@ backend/
 #### **Frontend (React.js)**
 
 ```bash
-cd frontend
 npm install react-router-dom axios jwt-decode react-oauth/google react-facebook-login react-instagram-login react-redux redux toolkit react-hook-form styled-components @mui/material @emotion/react @emotion/styled react-dropzone react-bootstrap bootstrap react-devtools
 
 ```
