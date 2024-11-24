@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { sequelize } = require("./models");
+const { sequelize } = require("./models/index");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const app = express();
@@ -10,7 +10,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev")); // Set up Morgan for logging HTTP requests
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Advanced User Management Platform!");

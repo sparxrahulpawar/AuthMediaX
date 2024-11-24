@@ -4,20 +4,24 @@
     "password": "Rahul@123",
     "database": "AuthMediaX",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": false,
+    "models-path": "src/models",
+    "migrations-path": "src/migrations",
+    "seeders-path": "src/seeders"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "mysql"
   }
 }
