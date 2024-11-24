@@ -1,0 +1,102 @@
+For your Advanced User Management and Media Sharing Platform project using PostgreSQL, here are some suggested table names and descriptions based on the features you mentioned. These tables will store data related to users, media, authentication, OTP verification, and other platform functionalities.
+
+1. Users Table
+Stores user information such as authentication details and personal data.
+
+Table name: Users
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each user.
+name	VARCHAR(255)	User's full name.
+email	VARCHAR(255) UNIQUE	User's email (used for login).
+password	VARCHAR(255)	Hashed password for user authentication.
+phone	VARCHAR(20)	User's phone number (for OTP verification).
+role	ENUM('user', 'admin')	User's role (e.g., admin, user).
+is_verified	BOOLEAN	Whether the user has verified their account via OTP/email.
+created_at	TIMESTAMP	Timestamp when the user was created.
+updated_at	TIMESTAMP	Timestamp when the user was last updated.
+2. Media Table
+Stores media information such as images and videos uploaded by users.
+
+Table name: Media
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each media.
+user_id	INTEGER	Foreign key referencing Users(id).
+media_type	ENUM('image', 'video')	Type of the media (image, video).
+media_url	TEXT	URL of the media file stored in AWS S3.
+description	TEXT	Description or caption for the media.
+created_at	TIMESTAMP	Timestamp when the media was uploaded.
+updated_at	TIMESTAMP	Timestamp when the media details were last updated.
+3. OAuth Accounts Table
+Stores information related to OAuth logins (Google, Facebook, Instagram, WhatsApp).
+
+Table name: OAuth_Accounts
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each OAuth account.
+user_id	INTEGER	Foreign key referencing Users(id).
+provider	ENUM('google', 'facebook', 'instagram', 'whatsapp')	OAuth provider (e.g., Google, Facebook).
+provider_id	VARCHAR(255)	Unique ID from the OAuth provider (e.g., Google ID).
+created_at	TIMESTAMP	Timestamp when the OAuth account was linked.
+4. OTP Verifications Table
+Stores OTP information for phone and email verification.
+
+Table name: OTPs
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each OTP record.
+user_id	INTEGER	Foreign key referencing Users(id).
+otp	VARCHAR(6)	OTP value.
+type	ENUM('phone', 'email')	Type of OTP (phone or email).
+expires_at	TIMESTAMP	Expiration time for the OTP.
+is_verified	BOOLEAN	Whether the OTP has been verified.
+created_at	TIMESTAMP	Timestamp when the OTP was generated.
+updated_at	TIMESTAMP	Timestamp when the OTP status was last updated.
+5. Sessions Table
+Stores session information for user login sessions.
+
+Table name: Sessions
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each session.
+user_id	INTEGER	Foreign key referencing Users(id).
+token	TEXT	Session token for the logged-in user.
+expires_at	TIMESTAMP	Expiration time of the session.
+created_at	TIMESTAMP	Timestamp when the session was created.
+updated_at	TIMESTAMP	Timestamp when the session was last updated.
+6. Audit Logs Table
+Stores logs related to user actions on the platform (e.g., login, media upload).
+
+Table name: Audit_Logs
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each log entry.
+user_id	INTEGER	Foreign key referencing Users(id).
+action	TEXT	Description of the action performed (e.g., "User logged in").
+created_at	TIMESTAMP	Timestamp when the action was performed.
+7. Roles Table
+Stores the roles for different users (admin, user, etc.) to handle permissions.
+
+Table name: Roles
+
+Column Name	Type	Description
+id	SERIAL PRIMARY KEY	Unique identifier for each role.
+role_name	VARCHAR(255)	Name of the role (e.g., "admin", "user").
+created_at	TIMESTAMP	Timestamp when the role was created.
+8. User_Roles Table (Many-to-Many relationship between Users and Roles)
+Table name: User_Roles
+
+Column Name	Type	Description
+user_id	INTEGER	Foreign key referencing Users(id).
+role_id	INTEGER	Foreign key referencing Roles(id).
+Summary of Tables
+Users: Stores user details and authentication info.
+Media: Stores media uploaded by users (images/videos).
+OAuth_Accounts: Stores OAuth login details for different providers.
+OTPs: Stores OTP information for email/phone verification.
+Sessions: Stores user session tokens for managing login state.
+Audit_Logs: Logs actions taken by users on the platform.
+Roles: Stores roles like "admin", "user" for managing permissions.
+User_Roles: Maps users to their roles (many-to-many relationship).
+These tables should give you a solid structure for handling user management, authentication, media uploads, and role-based access control in your platform. You can extend these tables or add more as needed based on future requirements.
