@@ -65,7 +65,7 @@ Refer to the [Installation Section](#installation) for detailed steps.
 #### **Backend (Node.js)**
 
 ```bash
-npm install express sequelize pg pg-hstore dotenv body-parser twilio aws-sdk bcryptjs jsonwebtoken cors helmet morgan
+npm install express sequelize pg pg-hstore dotenv body-parser twilio aws-sdk bcryptjs jsonwebtoken cors helmet morgan passport passport-local passport-google-oauth20
 npm install nodemon --save-dev
 npm install --save-dev sequelize-cli
 npx sequelize-cli init

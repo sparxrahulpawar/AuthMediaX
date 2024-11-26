@@ -3,6 +3,8 @@ const cors = require("cors");
 const { sequelize } = require("./models/index");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const routes = require("./routes/index");
+const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 
 // Middleware
@@ -15,6 +17,11 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.send("Welcome to the Advanced User Management Platform!");
 });
+
+app.use("/api", routes);
+
+//global error handling
+app.use(errorHandler);
 
 // Sync Sequelize models with the database
 sequelize.sync().then(() => {
