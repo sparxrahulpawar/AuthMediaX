@@ -5,6 +5,9 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const routes = require("./routes/index");
 const errorHandler = require("./middlewares/errorHandler");
+const passport = require("passport");
+require("./config/passport")
+
 const app = express();
 
 // Middleware
@@ -13,6 +16,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(passport.initialize());
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Advanced User Management Platform!");

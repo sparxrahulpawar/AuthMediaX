@@ -16,11 +16,11 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING(255), // Assuming password length up to 255 characters
-        allowNull: false,
+        allowNull: true,
       },
       phone: {
         type: DataTypes.STRING(15), // Setting the length to 15 characters (for phone numbers)
-        allowNull: false,
+        allowNull: true,
       },
       role: {
         type: DataTypes.ENUM("user", "admin"),

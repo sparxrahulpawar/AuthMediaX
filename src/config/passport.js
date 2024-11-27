@@ -2,7 +2,8 @@ const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: GoogleStrategy } = require('passport-google-oauth20');
 const { oauthCallback } = require('../controllers/oauthController');
-const users = require('../models/users');
+const users = require('../models');
+require('dotenv').config();
 
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
